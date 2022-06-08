@@ -65,7 +65,7 @@ class SinglyLinkedList {
 
     removeFromTail() {
         if(this.head === null){
-            
+
             return undefined
            } else {
             let prev;
@@ -73,29 +73,56 @@ class SinglyLinkedList {
             while (oldTail.next){
              prev = oldTail
                 oldTail = oldTail.next
-                console.log(prev)
-                console.log(oldTail)
+                // console.log("This is Prev")
+                // console.log(prev)
+                // console.log("This is oldTail")
+                // console.log(oldTail)
             }
-            prev.next = null
+            //I need to make sure prev.next exists first before I assign to null
+            //Or make sure prev is not null
+            //So in the case of only having one.
+            //I still want to remove from the tail, but I would simply say "this.head = null"
+            //If Prev is truthy value, then reassign
+            if(!this.head.next){ //
+                this.head = null
+            }
+            if(prev){
+                prev.next = null
+            }
+
+            //I need a conditional to see if the list only has one node.
+            //I need to reassign that head pointer to null.
             this.length--
             return oldTail
         }
-        
-        
+
+
         // Write your hypothesis on the time complexity of this method here
     }
 
     peekAtHead() {
         // Return value of head node
-
+        if (!this.head) return;
+        return this.head.value;
         // Write your hypothesis on the time complexity of this method here
     }
 
     print() {
+        if(!this.head){
+            return;
+        }
+            let curr = this.head;
+            while (curr) {
+                console.log(curr.value)
+                curr = curr.next;
+            }
+        }
         // Print out the linked list
-
+        //Walk through the list
+        //Print the value of each node as we walk through it, until we get to the end using the "tail" while loop.
         // Write your hypothesis on the time complexity of this method here
-    }
+
+    
 }
 
 module.exports = {
