@@ -12,15 +12,19 @@ class SinglyLinkedList {
         this.length = 0;
     }
 
-    addToHead(val) { 
-        let newNode = new SinglyLinkedListNode(val)
+    addToHead(val) {
+        let newNode = new SinglyLinkedNode(val)
         if(!this.head){
             this.head = newNode
             this.length++
-        
+        } else {
+            newNode.next = this.head
+            this.head = newNode
+            this.length++
         }
+        return this
 
-    //    0(1)
+    //    0(1) because adding to head only looks at the first node in the list, thus constant.
     }
 
     addToTail(val) {
@@ -32,7 +36,7 @@ class SinglyLinkedList {
         this.length++
         if (!this.head) {
             this.head = newNode;
-           
+
             return this
         } else {
 
@@ -43,6 +47,7 @@ class SinglyLinkedList {
         curr.next = newNode;
         return this
         }
+        //Time complexity should be o(n), because lines 44-47 traverse the entire list, making it linear time.
     }
 
     removeFromHead() {
@@ -65,7 +70,7 @@ class SinglyLinkedList {
 
     print() {
         // Print out the linked list
-        
+
         // Write your hypothesis on the time complexity of this method here
     }
 }
